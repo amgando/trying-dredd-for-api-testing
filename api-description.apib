@@ -1,0 +1,132 @@
+FORMAT: 1A
+
+# NEAR RPC API
+
+NEAR RPC API is our primary interface for interacting with the blockchain
+
+jsonrpc=2.0 method=status params:='[]' id=dontcare
+
+## JSON RPC [/]
+
+### Status [POST]
+
++ Request (application/json)
+      
+    + Body
+
+            {
+                "id": "dontcare",
+                "jsonrpc": "2.0",
+                "method": "status",
+                "params": []
+            }
+
++ Response 200 (application/json)
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "jsonrpc": {
+                        "type": "string"
+                    },
+                    "result": {
+                        "type": "object",
+                        "properties": {
+                            "chain_id": {
+                                "type": "string"
+                            },
+                            "rpc_addr": {
+                                "type": "string"
+                            },
+                            "validators": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "account_id": {
+                                            "type": "string"
+                                        },
+                                        "is_slashed": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            },
+                            "version": {
+                                "type": "object",
+                                "properties": {
+                                    "build": {
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "sync_info": {
+                                "type": "object",
+                                "properties": {
+                                    "latest_block_hash": {
+                                        "type": "string"
+                                    },
+                                    "latest_block_height": {
+                                        "type": "number"
+                                    },
+                                    "latest_block_time": {
+                                        "type": "string"
+                                    },
+                                    "latest_state_root": {
+                                        "type": "string"
+                                    },
+                                    "syncing": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+### Query Account [POST]
+
++ Request (application/json)
+      
+    + Body
+
+            {
+                "id": "dontcare",
+                "jsonrpc": "2.0",
+                "method": "query",
+                "params": ["account/test.near", ""]
+            }
+
++ Response 200 (application/json)
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                    "jsonrpc": { "type": "string" },
+                    "id": { "type": "string" },
+                    "result": {
+                        "type": "object",
+                        "properties": {
+                            "amount": { "type": "string" },
+                            "block_height": { "type": "number" },
+                            "code_hash": { "type": "string" },
+                            "locked": { "type": "string" },
+                            "storage_paid_at": { "type": "number" },
+                            "storage_usage": { "type": "number" }
+                        }
+                    }
+                }
+            }
