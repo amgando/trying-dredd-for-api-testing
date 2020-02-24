@@ -8,10 +8,32 @@ this is a quick test of using [dredd](https://dredd.org) to validate our RPC API
    
    `npm i -g dredd` if you already have NodeJS
 
-2. from this folder (make sure the `api-description.apib` file is available) run dredd
+2. from this folder (make sure the `api-description.apib` file is available) run
 
-    `dredd api-description.apib https://rpc.nearprotocol.com`
+    `./test.sh`
 
+3. that's it.  you should see something like
+
+   ```bash
+   pass: POST (200) / duration: 349ms
+   pass: POST (200) / duration: 268ms
+   complete: 2 passing, 0 failing, 0 errors, 0 skipped, 2 total
+   complete: Tests took 619ms
+   ```
+
+4. or if you're debugging, lots lots more
+   ```bash
+   2020-02-24T20:58:27.850Z - debug: Loading configuration file: ./dredd.yml
+   2020-02-24T20:58:27.852Z - debug: Dredd version: 13.0.1
+   2020-02-24T20:58:27.852Z - debug: Node.js version: v13.7.0
+   ...
+   pass: POST (200) / duration: 356ms
+   ...
+   pass: POST (200) / duration: 322ms
+   ...
+   complete: 2 passing, 0 failing, 0 errors, 0 skipped, 2 total
+   complete: Tests took 682ms
+   ```
 
 ## NEAR API is JSON RPC over HTTP
 
@@ -20,24 +42,20 @@ https://docs.nearprotocol.com/docs/interaction/rpc
 
 ### Validation spec
 
-- used API Blueprint for this
+- use API Blueprint for this  \
   https://apiblueprint.org/documentation/tutorial.html
 
-- JSON schema has solid docs too
+- JSON schema has solid docs too  \
   http://json-schema.org/learn/
 
-- used this to validate schema definition against a sample: 
+- use JSON Schema Lint to validate schema definition against a sample  \
   https://jsonschemalint.com/#!/version/draft-07/markup/json
 
-- and this to lint my JSON schema if there were issues with it
+- use JSON Lint lint my JSON schema if there were issues with the above  \
   https://jsonlint.com/
-
-`dredd -l debug api-description.apib https://rpc.nearprotocol.com`
-
 
 
 ## Resources
-
 
 here's an example that you can use with both of these links to try things out
 
@@ -115,7 +133,7 @@ here's an example that you can use with both of these links to try things out
 
 ### Response
 
-coming from `http https://rpc.nearprotocol.com/\?123 jsonrpc=2.0 method=status params:='[]' id=dontcare`
+`http https://rpc.nearprotocol.com/\?123 jsonrpc=2.0 method=status params:='[]' id=dontcare`
 
 ```json
 {
@@ -277,3 +295,7 @@ Via: 1.1 google
     }
 }
 ```
+
+## Known Issues
+
+- `dredd` seems to assume a RESTful API so it warns if you overload a resource + method combination (ie. `POST`ing to `/`).  since this is our entire API, we'll see this warning.  i did not investgate a way to turn off this warning.
