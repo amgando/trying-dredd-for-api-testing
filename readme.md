@@ -63,71 +63,71 @@ here's an example that you can use with both of these links to try things out
 
 ```json
 {
-	"type": "object",
-	"properties": {
-		"id": {
-			"type": "string"
-		},
-		"jsonrpc": {
-			"type": "string"
-		},
-		"result": {
-			"type": "object",
-			"properties": {
-				"chain_id": {
-					"type": "string"
-				},
-				"rpc_addr": {
-					"type": "string"
-				},
-				"validators": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"account_id": {
-								"type": "string"
-							},
-							"is_slashed": {
-								"type": "boolean"
-							}
-						}
-					}
-				},
-				"version": {
-					"type": "object",
-					"properties": {
-						"build": {
-							"type": "string"
-						},
-						"version": {
-							"type": "string"
-						}
-					}
-				},
-				"sync_info": {
-					"type": "object",
-					"properties": {
-						"latest_block_hash": {
-							"type": "string"
-						},
-						"latest_block_height": {
-							"type": "number"
-						},
-						"latest_block_time": {
-							"type": "string"
-						},
-						"latest_state_root": {
-							"type": "string"
-						},
-						"syncing": {
-							"type": "boolean"
-						}
-					}
-				}
-			}
-		}
-	}
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "chain_id": {
+          "type": "string"
+        },
+        "rpc_addr": {
+          "type": "string"
+        },
+        "validators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "account_id": {
+                "type": "string"
+              },
+              "is_slashed": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "version": {
+          "type": "object",
+          "properties": {
+            "build": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        },
+        "sync_info": {
+          "type": "object",
+          "properties": {
+            "latest_block_hash": {
+              "type": "string"
+            },
+            "latest_block_height": {
+              "type": "number"
+            },
+            "latest_block_time": {
+              "type": "string"
+            },
+            "latest_state_root": {
+              "type": "string"
+            },
+            "syncing": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
